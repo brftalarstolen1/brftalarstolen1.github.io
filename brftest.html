@@ -14,18 +14,27 @@
         }
 
         header {
-            background: url('background.jpg') center/cover no-repeat;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            color: black;
-            text-align: center;
-            transition: height 0.5s ease-in-out;
-            position: sticky;
-            top: 0;
-            z-index: 999;
+	    background: url('background.jpg') center/cover no-repeat;
+	    height: 100vh;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: flex-start;
+	    color: black;
+	    text-align: center;
+	    transition: height 0.5s ease-in-out;
+	    position: sticky;
+	    top: 0;
+	    z-index: 999;
+        }
+
+        .background-image {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    background: url('background.jpg') center/cover no-repeat;
         }
 
         h1 {
@@ -34,7 +43,7 @@
         }
 
         nav {
-            position: fixed;
+            position: absolute;
             top: 10vh;
             left: 0;
             width: 100%;
@@ -59,10 +68,10 @@
         }
 
         .section {
-            display: none;
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 100%; /* Make sure sections take up the full width on smartphones */
+            margin: 0;
             padding: 1em;
+            display: none;
         }
 
         /* Media query for mobile devices */
@@ -70,32 +79,29 @@
             nav {
                 flex-direction: column;
                 text-align: center;
-                position: relative; /* Set position to relative for z-index to work properly */
-                z-index: 1001; /* Ensure the nav bar appears above the background image */
+                background-color: transparent; /* Set a transparent background for smartphones */
             }
 
             nav a {
-                margin: -0.17em 0;
+                margin: 0.07em 0;
+                background-color: rgba(0, 0, 0, 0.7); /* Add a background color for links on smartphones */
             }
 
             .section iframe {
                 width: 100%; /* Set iframe width to 100% on smaller screens */
-	    }
-
-            header {
-                background-size: cover; /* Initially set background size to cover */
             }
 
-            header.shrink {
-                height: 10vh; /* Adjust the height to match the navigation bar */
+            .background-image {
+                height: 25vh; /* Adjust the background height on mobile */
             }
-      }
+        }
     </style>
 </head>
 
 <body>
 
-    <header id="header">
+    <header>
+        <div class="background-image"></div>
         <h1>BRF Talarstolen 1</h1>
     </header>
 
@@ -137,28 +143,16 @@
         <iframe width="900" height="2000" src="https://docs.google.com/document/d/e/2PACX-1vRHvpmHBHvl62yd6j4xM8T68hKZ2wq7VzeGFyhDQ57Rx_FFUMZYhuY8fvkt8ZQQICTyB-MVnqUZ387o/pub?embedded=true" frameborder="0"></iframe>
     </div>
 
-
     <script>
         function changeBackgroundHeight(height) {
-            const header = document.getElementById('header');
+            const header = document.querySelector('header');
             const navBar = document.querySelector('nav');
 
             header.style.height = height + 'vh';
             navBar.style.top = '0';
             // Delay the scroll to ensure it happens after the transition
-            setTimeout(() => {window.scrollTo({ top: 0, behavior: 'smooth' });}, 500);
+            setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 500);
         }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const header = document.getElementById('header');
-            const navBar = document.querySelector('nav');
-
-            // Add an event listener to toggle the full-screen class on navigation click
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    header.classList.remove('full-screen');
-                    setTimeout(() => { header.classList.add('full-screen'); }, 100);
 
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -192,7 +186,7 @@
 
         window.addEventListener('scroll', () => {
             const navBar = document.querySelector('nav');
-            const header = document.getElementById('header');
+            const header = document.querySelector('header');
             navBar.style.top = window.scrollY === 0 && header.clientHeight === 100 ? '10vh' : '0';
         });
     </script>
