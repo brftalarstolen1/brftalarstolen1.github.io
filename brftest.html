@@ -1,190 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRF Talarstolen 1</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            overflow-x: hidden;
-            background-color: #fff; /* Add a background color to body to prevent white flash on Android Chrome */
-        }
+header {
+    background: url('background.jpg') center/cover no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: black;
+    text-align: center;
+    transition: height 0.5s ease-in-out;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
 
-        header {
-            position: relative;
-            overflow: hidden; /* Fix overflow issue on Android Chrome */
-        }
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('background.jpg') center/cover no-repeat;
+}
 
-        .background-image {
-            background: url('background.jpg') center/cover no-repeat;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: -1;
-        }
+h1 {
+    margin-top: 4;
+    transition: opacity 0.3s;
+}
 
-        h1 {
-            margin-top: 4;
-            transition: opacity 0.3s;
-        }
+nav {
+    position: fixed;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em 0;
+    z-index: 1000;
+    transition: top 0.3s;
+}
 
-        nav {
-            position: fixed;
-            top: 10vh;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 1em 0;
-            z-index: 1000;
-            transition: top 0.3s;
-            overflow: hidden; /* Fix overflow issue on Android Chrome */
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    transition: background-color 0.3s;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5em 1em;
-            transition: background-color 0.3s;
-            overflow: hidden; /* Fix overflow issue on Android Chrome */
-        }
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
 
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+.section {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1em;
+}
 
-        .section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 1em;
-            overflow: hidden; /* Fix overflow issue on Android Chrome */
-        }
+/* Media query for mobile devices */
+@media screen and (max-width: 850px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+        background-color: transparent;
+    }
 
-        /* Media query for mobile devices */
-        @media screen and (max-width: 850px) {
-            nav {
-                flex-direction: column;
-                text-align: center;
-                background-color: transparent;
-            }
+    nav a {
+        margin: 0.07em 0;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
 
-            nav a {
-                margin: 0.07em 0;
-                background-color: rgba(0, 0, 0, 0.7);
-            }
+    .section iframe {
+        width: 100%;
+    }
 
-            .section iframe {
-                width: 100%;
-            }
-
-            .background-image {
-                height: 25vh;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <header>
-        <div class="background-image"></div>
-        <h1>BRF Talarstolen 1</h1>
-    </header>
-
-    <nav>
-        <a href="#välkommen" onclick="changeBackgroundHeight(25)">Välkommen</a>
-        <a href="#årsredovisningar" onclick="changeBackgroundHeight(25)">Årsredovisningar</a>
-        <a href="#övernattningsrum" onclick="changeBackgroundHeight(25)">Övernattningsrum</a>
-        <a href="#stadgar-ordningsregler" onclick="changeBackgroundHeight(25)">Stadgar / Ordningsregler</a>
-        <a href="#underhållsplan" onclick="changeBackgroundHeight(25)">Underhållsplan</a>
-        <a href="#övrigt" onclick="changeBackgroundHeight(25)">Övrigt</a>
-        <a href="#kontakt" onclick="changeBackgroundHeight(25)">Kontakt</a>
-    </nav>
-
-    <div id="välkommen" class="section">
-        <iframe width="900" height="900" src="https://docs.google.com/document/d/e/2PACX-1vRHO452UknDZFLDNSqpz_mVHZarjLlZmPTGrLDiN299WhUs84WIXxwowEhQuCf3HTMvO0CfDWf327KG/pub?embedded=true" frameborder="0"></iframe>
-    </div>
-
-    <div id="årsredovisningar" class="section">
-        <iframe width="900" height="900" src="https://docs.google.com/document/d/e/2PACX-1vQQiUysI9lqCR1xPRhmkBuUkq-gu6MmkWsN33jctp7U2zH5hjGBuxRCH1qceja5a2WkY2xrr9vZdLL4/pub?embedded=true" frameborder="0"></iframe>
-    </div>
-
-    <div id="övernattningsrum" class="section">
-        <iframe width="900" height="1300" src="https://docs.google.com/document/d/e/2PACX-1vQF00n3WOAOE4z-ctOSDqaNPDYbmWK5lRguX835fyvuevBn8KFVbzPHl-yHejg1FXZuLChq1dALg_OE/pub?embedded=true" frameborder="0"></iframe>
-    </div>
-
-    <div id="stadgar-ordningsregler" class="section">
-        <iframe width="900" height="900" src="https://docs.google.com/document/d/e/2PACX-1vQrhhfoqghso51HUIe9OF0zPLSBbFg4iUw9H2Bv-QXXvGxxbEX6-ehzNKoMmZO9wbnfP3zgo8rCU3q8/pub?embedded=true" frameborder="0"></iframe>
-    </div>
-
-    <div id="underhållsplan" class="section">
-        <iframe width="900" height="900" src="https://docs.google.com/document/d/e/2PACX-1vSrMK-3PJ3BPIfv2P_qn2DtV6DaOKZ9LwPQhPKqIiikzs6ak1iB4pB9v3yH30aEazKCN0BXkUvsEqwM/pub?embedded=true" frameborder="0"></iframe>
-    </div>
-
-    <div id="övrigt" class="section">
-        <iframe width="900" height="900" src="https://docs.google.com/document/d/e/2PACX-1vSgb80Ypwb4AUX4df6wo4R1YqV_MqcO36mZbqx2QIHNAW23MQV_dEJ0Nwci6FywpQizu78I7jPAqnWe/pub?embedded=true" frameborder="0"></iframe>
-    </div>
-
-    <div id="kontakt" class="section">
-        <iframe width="900" height="2000" src="https://docs.google.com/document/d/e/2PACX-1vRHvpmHBHvl62yd6j4xM8T68hKZ2wq7VzeGFyhDQ57Rx_FFUMZYhuY8fvkt8ZQQICTyB-MVnqUZ387o/pub?embedded=true" frameborder="0"></iframe>
-    </div>
-
-    <script>
-        function changeBackgroundHeight(height) {
-            const header = document.querySelector('header');
-            const navBar = document.querySelector('nav');
-
-            header.style.height = height + 'vh';
-            navBar.style.top = '0';
-            // Delay the scroll to ensure it happens after the transition
-            setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 500);
-        }
-
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const title = document.querySelector('h1');
-                const navBar = document.querySelector('nav');
-                const sections = document.querySelectorAll('.section');
-
-                title.style.opacity = '0';
-
-                setTimeout(() => {
-                    title.style.display = 'none';
-                }, 300);
-
-                sections.forEach(section => {
-                    section.style.display = 'none';
-                });
-
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-
-                targetElement.style.display = 'block';
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        window.addEventListener('scroll', () => {
-            const navBar = document.querySelector('nav');
-            const header = document.querySelector('header');
-            navBar.style.top = window.scrollY === 0 && header.clientHeight === 100 ? '10vh' : '0';
-        });
-    </script>
-
-</body>
-
-</html>
+    .background-image {
+        height: 25vh;
+    }
+}
