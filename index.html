@@ -14,20 +14,20 @@
         }
 
         header {
-            background: url('background.jpg')
-	    center/cover no-repeat;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            color: black;
-            text-align: center;
-            transition: height 0.5s ease-in-out;
-            position: sticky;
-            top: 0;
-            z-index: 999;
+	    background: url('background.jpg') center/cover no-repeat;
+	    height: 100vh;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: flex-start;
+	    color: black;
+	    text-align: center;
+	    transition: height 0.5s ease-in-out;
+	    position: sticky;
+	    top: 0;
+	    z-index: 999;
         }
+
 
         h1 {
             margin-top: 4;
@@ -69,24 +69,38 @@
         /* Media query for mobile devices */
         @media screen and (max-width: 850px) {
             nav {
-                flex-direction: column;
+                flex-flow: row wrap;
                 text-align: center;
+                background-color: transparent; /* Set a transparent background for smartphones */
             }
 
             nav a {
-                margin: -0.2em 0;
+                margin: 0.07em 0;
+                background-color: rgba(0, 0, 0, 0.7); /* Add a background color for links on smartphones */
             }
 
-            .section iframe {
+        .section {
+            max-width: 100%; /* Make sure sections take up the full width on smartphones */
+            margin: 0;
+            padding: 1em;
+            display: none;
+        } 
+
+           .section iframe {
                 width: 100%; /* Set iframe width to 100% on smaller screens */
-	    }  
-      }
+            }
+
+            .background-image {
+                height: 0vh; /* This positions the header on a mobile page where 0 is the top */
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <header id="header">
+    <header>
+        <div class="background-image"></div>
         <h1>BRF Talarstolen 1</h1>
     </header>
 
@@ -128,16 +142,15 @@
         <iframe width="900" height="2000" src="https://docs.google.com/document/d/e/2PACX-1vRHvpmHBHvl62yd6j4xM8T68hKZ2wq7VzeGFyhDQ57Rx_FFUMZYhuY8fvkt8ZQQICTyB-MVnqUZ387o/pub?embedded=true" frameborder="0"></iframe>
     </div>
 
-
     <script>
         function changeBackgroundHeight(height) {
-            const header = document.getElementById('header');
+            const header = document.querySelector('header');
             const navBar = document.querySelector('nav');
 
             header.style.height = height + 'vh';
             navBar.style.top = '0';
             // Delay the scroll to ensure it happens after the transition
-            setTimeout(() => {window.scrollTo({ top: 0, behavior: 'smooth' });}, 500);
+            setTimeout(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, 500);
         }
 
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -172,7 +185,7 @@
 
         window.addEventListener('scroll', () => {
             const navBar = document.querySelector('nav');
-            const header = document.getElementById('header');
+            const header = document.querySelector('header');
             navBar.style.top = window.scrollY === 0 && header.clientHeight === 100 ? '10vh' : '0';
         });
     </script>
