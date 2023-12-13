@@ -60,10 +60,10 @@
         }
 
         .section {
-            max-width: 100%; /* Make sure sections take up the full width on smartphones */
-            margin: 0;
-            padding: 1em;
             display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1em;
         }
 
         /* Media query for mobile devices */
@@ -79,7 +79,14 @@
                 background-color: rgba(0, 0, 0, 0.7); /* Add a background color for links on smartphones */
             }
 
-            .section iframe {
+        .section {
+            max-width: 100%; /* Make sure sections take up the full width on smartphones */
+            margin: 0;
+            padding: 1em;
+            display: none;
+        } 
+
+           .section iframe {
                 width: 100%; /* Set iframe width to 100% on smaller screens */
             }
 
