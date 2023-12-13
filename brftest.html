@@ -70,6 +70,8 @@
             nav {
                 flex-direction: column;
                 text-align: center;
+                position: relative; /* Set position to relative for z-index to work properly */
+                z-index: 1001; /* Ensure the nav bar appears above the background image */
             }
 
             nav a {
@@ -81,13 +83,12 @@
 	    }
 
             header {
-                background-size: 100% auto; /* Set background size to cover the height only */
-            }
-
-            header.full-screen {
                 background-size: cover; /* Initially set background size to cover */
             }
 
+            header.shrink {
+                height: 10vh; /* Adjust the height to match the navigation bar */
+            }
       }
     </style>
 </head>
@@ -148,11 +149,20 @@
             setTimeout(() => {window.scrollTo({ top: 0, behavior: 'smooth' });}, 500);
         }
 
+        document.addEventListener('DOMContentLoaded', function () {
+            const header = document.getElementById('header');
+            const navBar = document.querySelector('nav');
+
+            // Add an event listener to toggle the full-screen class on navigation click
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    header.classList.remove('full-screen');
+                    setTimeout(() => { header.classList.add('full-screen'); }, 100);
+
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                header.classList.remove('full-screen');
-                setTimeout(() => { header.classList.add('full-screen'); }, 100);
 
                 const title = document.querySelector('h1');
                 const navBar = document.querySelector('nav');
